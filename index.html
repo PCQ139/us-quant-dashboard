@@ -51,7 +51,7 @@
   .nv-tabs { display:inline-flex; gap:6px; }
   .nv-tabs button { background:#0d0d0d; color:#ffffff; border:1px solid #30363d; border-radius:6px; font-size:12px; font-weight:600; padding:2px 12px; cursor:pointer; line-height:1.5; }
   .nv-tabs button.nv-on { background:#1f6feb; border-color:#1f6feb; color:#ffffff; }
-  .nav-scroll svg { display:block; }
+  .nav-scroll svg { display:block; height:190px; }
   .foot { color:#6e7681; font-size:11px; margin-top:20px; text-align:center; line-height:1.7; }
   /* 2026-09-06 极简纯黑: 框体纯黑, 文字除红/绿外一律纯白 */
   .market-strip, .card, .panel { background:#000000; }
@@ -133,6 +133,8 @@ setInterval(tickEt,1000);tickEt();</script>
       <div id="nv-y" style="display:none"><div class="nav-scroll"><svg viewBox="0 0 520 190" style="width:max(100%,520px)"><line x1="34" y1="125.7" x2="486" y2="125.7" stroke="#30363d" stroke-dasharray="4 4"/><polyline points="34.0,38.3" fill="none" stroke="#58a6ff" stroke-width="2.5"/><circle cx="34.0" cy="38.3" r="4.5" fill="#58a6ff"/><text x="34.0" y="154" text-anchor="middle" class="svgd">2026</text><text x="34.0" y="173" text-anchor="middle" class="svgp">+8.12%</text></svg></div></div>
       <script>
 function nvShow(m){var ids=['d','m','y'];for(var i=0;i<ids.length;i++){var el=document.getElementById('nv-'+ids[i]);if(el)el.style.display=(ids[i]===m)?'':'none';}var bs=document.querySelectorAll('.nv-tabs button');for(var j=0;j<bs.length;j++){bs[j].classList.toggle('nv-on',bs[j].getAttribute('data-nv')===m);}}
+function nvWheel(){var els=document.querySelectorAll('.nav-scroll');for(var i=0;i<els.length;i++){els[i].addEventListener('wheel',function(e){if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){this.scrollLeft+=e.deltaY;e.preventDefault();}},{passive:false});}}
+nvWheel();
 </script>
     </div>
   </div>
