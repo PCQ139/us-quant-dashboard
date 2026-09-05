@@ -7,9 +7,9 @@
 <style>
   * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
   html { -webkit-text-size-adjust:100%; }
-  body { background:#0b0f17; color:#e6edf3; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; padding:22px 16px 44px; background-image:radial-gradient(1100px 480px at 88% -8%, rgba(56,139,253,.14), transparent 60%), radial-gradient(850px 420px at -8% 0%, rgba(63,185,80,.07), transparent 55%); background-attachment:fixed; }
+  body { background:#000000; color:#ffffff; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; padding:22px 16px 44px; }
   .wrap { max-width:1100px; margin:0 auto; }
-  h1 { font-size:21px; font-weight:800; letter-spacing:.4px; display:inline-block; background:linear-gradient(90deg,#f0f6fc,#79c0ff); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  h1 { font-size:21px; font-weight:800; letter-spacing:.4px; color:#ffffff; }
   .sub { color:#8b949e; font-size:12px; margin:8px 0 18px; line-height:1.6; }
   .market-strip { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px 20px; background:rgba(22,27,34,.86); border:1px solid rgba(48,54,61,.95); border-radius:14px; padding:14px 18px; box-shadow:0 4px 14px rgba(0,0,0,.28); margin-bottom:16px; }
   .market-strip h1 { font-size:20px; }
@@ -47,6 +47,15 @@
   .nav-scroll { max-height:340px; overflow:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; border-radius:8px; }
   .nav-scroll svg { display:block; }
   .foot { color:#6e7681; font-size:11px; margin-top:20px; text-align:center; line-height:1.7; }
+  /* 2026-09-06 极简纯黑: 框体纯黑, 文字除红/绿外一律纯白 */
+  .market-strip, .card, .panel { background:#000000; }
+  body, h1, h2, .sub, .foot, table, th, td, .card .k, .card .v, .card .s, .ms-label, .ms-clock { color:#ffffff; }
+  .muted { color:#ffffff !important; }
+  th { background:#0d0d0d; color:#ffffff; }
+  tr:nth-child(odd) td { background:#000000; }
+  .svgd, .svgv, .svgp { fill:#ffffff; }
+  [style*="color:#f0b429"] { color:#ffffff !important; }
+  .card .k, .card .s, .sub, .ms-label { font-size:13px; }
   @media (max-width:900px) { .grid { grid-template-columns:1fr; gap:12px; } .cards { grid-template-columns:repeat(2,1fr); gap:10px; } body { padding:14px 10px 36px; } h1 { font-size:17px; } .card { padding:12px 13px; } .card .v { font-size:19px; } .panel { padding:13px; } table { font-size:11.5px; } th, td { padding:7px 8px; } .market-strip h1 { font-size:16px; } .ms-clock { font-size:22px; } }
   @media (max-width:380px) { .cards { grid-template-columns:1fr 1fr; gap:8px; } .card .s { font-size:9.5px; } }
 </style>
