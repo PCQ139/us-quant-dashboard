@@ -5,43 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>US QUANT 模拟盘展板</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background:#0d1117; color:#e6edf3; font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; padding:28px 20px; }
-  .wrap { max-width:1080px; margin:0 auto; }
-  h1 { font-size:22px; font-weight:700; }
-  .sub { color:#8b949e; font-size:12px; margin:6px 0 18px; }
-  .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:16px; }
-  .card { background:#161b22; border:1px solid #30363d; border-radius:10px; padding:14px 16px; }
-  .card .k { color:#8b949e; font-size:11px; margin-bottom:6px; }
-  .card .v { font-size:21px; font-weight:700; }
-  .card .s { color:#8b949e; font-size:10.5px; margin-top:5px; }
-  .grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-  .panel { background:#161b22; border:1px solid #30363d; border-radius:10px; padding:14px 16px; }
-  .panel h2 { font-size:13px; margin-bottom:10px; }
-  table { width:100%; border-collapse:collapse; font-size:11.5px; }
-  th { background:#21262d; color:#e6edf3; font-weight:600; text-align:center; padding:7px 8px; border:1px solid #30363d; }
-  td { padding:7px 8px; border:1px solid #30363d; text-align:center; color:#9da7b3; }
-  td.tk { color:#e6edf3; font-weight:600; }
+  * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+  html { -webkit-text-size-adjust:100%; }
+  body { background:#0b0f17; color:#e6edf3; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; padding:22px 16px 44px; background-image:radial-gradient(1100px 480px at 88% -8%, rgba(56,139,253,.14), transparent 60%), radial-gradient(850px 420px at -8% 0%, rgba(63,185,80,.07), transparent 55%); background-attachment:fixed; }
+  .wrap { max-width:1100px; margin:0 auto; }
+  h1 { font-size:21px; font-weight:800; letter-spacing:.4px; display:inline-block; background:linear-gradient(90deg,#f0f6fc,#79c0ff); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .sub { color:#8b949e; font-size:12px; margin:8px 0 18px; line-height:1.6; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-bottom:16px; }
+  .card { background:rgba(22,27,34,.86); border:1px solid rgba(48,54,61,.95); border-radius:14px; padding:14px 15px; box-shadow:0 4px 14px rgba(0,0,0,.28); }
+  .card .k { color:#8b949e; font-size:11px; letter-spacing:.6px; margin-bottom:6px; }
+  .card .v { font-size:22px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:.2px; }
+  .card .s { color:#8b949e; font-size:10.5px; margin-top:6px; line-height:1.5; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .panel { background:rgba(22,27,34,.88); border:1px solid rgba(48,54,61,.95); border-radius:14px; padding:15px 16px; box-shadow:0 4px 14px rgba(0,0,0,.24); }
+  .panel h2 { font-size:13px; font-weight:700; margin-bottom:12px; padding-left:10px; border-left:3px solid #58a6ff; line-height:1.55; }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  th { background:#151c27; color:#e6edf3; font-weight:600; text-align:center; padding:8px 9px; border:1px solid #30363d; white-space:nowrap; }
+  td { padding:8px 9px; border:1px solid #2a3139; text-align:center; color:#a8b3bf; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  td.tk { color:#e6edf3; font-weight:700; }
   td.l { text-align:left; }
-  tr:nth-child(odd) td { background:#1c2128; }
+  tr:nth-child(odd) td { background:rgba(28,33,40,.55); }
   .up { color:#3fb950 !important; }
   .down { color:#f85149 !important; }
-  .muted { color:#6e7681; }
+  .muted { color:#6e7681 !important; }
   .svgv { fill:#e6edf3; font-size:11px; font-weight:600; }
   .svgp { fill:#e6edf3; font-size:10px; font-weight:700; }
   .svgd { fill:#8b949e; font-size:10px; }
   .full { grid-column:1 / -1; }
-  .flow-scroll { max-height: 330px; overflow-y: auto; overscroll-behavior: contain; }
-  .flow-scroll thead th { position: sticky; top: 0; z-index: 1; }
-  .flow-scroll::-webkit-scrollbar { width: 8px; }
-  .flow-scroll::-webkit-scrollbar-thumb { background: #30363d; border-radius: 4px; }
-  .flow-scroll::-webkit-scrollbar-track { background: transparent; }
-  .nav-scroll { overflow-x: auto; overscroll-behavior-x: contain; }
-  .nav-scroll::-webkit-scrollbar { height: 8px; }
-  .nav-scroll::-webkit-scrollbar-thumb { background: #30363d; border-radius: 4px; }
-  .nav-scroll::-webkit-scrollbar-track { background: transparent; }
-  .foot { color:#6e7681; font-size:10.5px; margin-top:14px; text-align:center; }
-  @media (max-width:800px) { .cards { grid-template-columns:repeat(2,1fr); } .grid { grid-template-columns:1fr; } }
+  .tbl { overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:8px; }
+  .flow-scroll { max-height:340px; overflow:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; border-radius:8px; }
+  .flow-scroll thead th { position:sticky; top:0; z-index:1; }
+  .tbl::-webkit-scrollbar, .flow-scroll::-webkit-scrollbar { width:8px; height:8px; }
+  .tbl::-webkit-scrollbar-thumb, .flow-scroll::-webkit-scrollbar-thumb { background:#30363d; border-radius:4px; }
+  .tbl::-webkit-scrollbar-track, .flow-scroll::-webkit-scrollbar-track { background:transparent; }
+  .nav-scroll { overflow-x:auto; overscroll-behavior-x:contain; -webkit-overflow-scrolling:touch; border-radius:8px; }
+  .nav-scroll svg { display:block; }
+  .foot { color:#6e7681; font-size:11px; margin-top:20px; text-align:center; line-height:1.7; }
+  @media (max-width:900px) { .grid { grid-template-columns:1fr; gap:12px; } .cards { grid-template-columns:repeat(2,1fr); gap:10px; } body { padding:14px 10px 36px; } h1 { font-size:17px; } .card { padding:12px 13px; } .card .v { font-size:19px; } .panel { padding:13px; } table { font-size:11.5px; } th, td { padding:7px 8px; } }
+  @media (max-width:380px) { .cards { grid-template-columns:1fr 1fr; gap:8px; } .card .s { font-size:9.5px; } }
 </style>
 </head>
 <body><div class="wrap">
@@ -58,10 +59,12 @@
   <div class="grid">
     <div class="panel">
       <h2>当前持仓 (4 只)</h2>
+      <div class="tbl">
       <table>
         <tr><th>标的</th><th>股数</th><th>平均成本</th><th>现价</th><th>市值</th><th>浮动盈亏</th><th>仓位</th></tr>
         <tr><td class="tk">MSFT</td><td>5</td><td>$504.11</td><td>$499.68</td><td>$2,498</td><td class="down">-22.17 (-0.9%)</td><td>23%</td></tr><tr><td class="tk">ROKU</td><td>13</td><td>$157.23</td><td>$155.59</td><td>$2,023</td><td class="down">-21.32 (-1.0%)</td><td>19%</td></tr><tr><td class="tk">CRSP</td><td>29</td><td>$56.24</td><td>$55.76</td><td>$1,617</td><td class="down">-14.07 (-0.9%)</td><td>15%</td></tr><tr><td class="tk">TSLA</td><td>4</td><td>$353.46</td><td>$353.95</td><td>$1,416</td><td class="up">+1.98 (+0.1%)</td><td>13%</td></tr>
       </table>
+      </div>
     </div>
     <div class="panel">
       <h2>交易流水 (109 笔 · 滚动查看全部)</h2>
@@ -77,6 +80,7 @@
   <div class="grid" style="margin-top:12px">
     <div class="panel">
       <h2>收益汇总 (今日口径)</h2>
+      <div class="tbl">
       <table>
         <tr><th>类别</th><th>金额</th><th>占总收益</th></tr>
         <tr><td class="l">今日已实现盈亏</td><td class="up">+1.36</td><td>-1049%</td></tr>
@@ -85,6 +89,7 @@
         <tr><td class="l muted">累计总收益 (自 $10,000)</td><td class="muted">+812.02</td><td class="muted">+8.12%</td></tr>
         <tr><td class="l muted">累计手续费 (109 笔 · 2026-09-01 起监控)</td><td class="muted" style="color:#f85149">-$212.76</td><td class="muted">占盈利 26%</td></tr>
       </table>
+      </div>
     </div>
     <div class="panel">
       <h2>净值走势</h2>
@@ -100,30 +105,36 @@
   <div class="grid" style="margin-top:12px">
     <div class="panel full">
       <h2>高开拦截记录 (gap 纪律 · 拦截 <b>2</b> 笔 · 已收盘验证 <b>2</b> 笔 · 若买入: 盈利 <b class="up">2</b> / 亏损 <b class="down">0</b> · 平均 <b class=up>+8.27%</b> (开盘买→收盘卖口径))</h2>
+      <div class="tbl">
       <table>
         <tr><th>拦截时间</th><th>标的</th><th>高开幅度</th><th>危险档</th><th>若买入收盘结果</th></tr>
         <tr><td class="l">2026-09-03 10:41</td><td class="tk">HOOD</td><td>+6.2%</td><td>5-7</td><td class="up">+9.60%</td></tr><tr><td class="l">2026-08-21 09:43</td><td class="tk">HOOD</td><td>+6.1%</td><td>5-7</td><td class="up">+6.95%</td></tr>
       </table>
+      </div>
     </div>
   </div>
 
   <div class="grid" style="margin-top:12px">
     <div class="panel full">
       <h2>出场触发记录 · 止损+止盈 (触发 <b>9</b> 笔 · 波动率止盈 4笔 / 跳空低开保护(-4%) 4笔 / 收盘清仓(旧规则) 1笔 · 盈利 <b class="up">5</b> / 亏损 <b class="down">4</b> · 合计收益 <b class=up>$+320.77</b> · 平均 <b class=up>+1.87%</b> (已实现收益))</h2>
+      <div class="tbl">
       <table>
         <tr><th>成交时间</th><th>标的</th><th>建仓价</th><th>止损线</th><th>卖出价</th><th>股数</th><th>操作后收益</th><th>触发方式</th></tr>
         <tr><td class="l">2026-09-04 12:31:00</td><td class="tk">SNDK</td><td>$1,541.04</td><td>$nan</td><td>$1,710.64</td><td>1</td><td class=up>$+165.60 (+11.01%)</td><td><span style="color:#3fb950;font-weight:700">波动率止盈</span></td></tr><tr><td class="l">2026-09-04 09:35:00</td><td class="tk">MU</td><td>$919.62</td><td>$nan</td><td>$990.48</td><td>2</td><td class=up>$+137.72 (+7.71%)</td><td><span style="color:#3fb950;font-weight:700">波动率止盈</span></td></tr><tr><td class="l">2026-09-03 10:29:00</td><td class="tk">AAPL</td><td>$322.58</td><td>$nan</td><td>$329.86</td><td>7</td><td class=up>$+46.96 (+2.26%)</td><td><span style="color:#3fb950;font-weight:700">波动率止盈</span></td></tr><tr><td class="l">2026-09-01 09:40</td><td class="tk">COIN</td><td>$183.54</td><td>$179.87</td><td>$178.63</td><td>12</td><td class=down>$-64.95 (-2.68%)</td><td><span style="color:#a371f7;font-weight:700">跳空低开保护(-4%)</span></td></tr><tr><td class="l">2026-08-31 15:57:00</td><td class="tk">TSLA</td><td>$351.02</td><td>$nan</td><td>$368.59</td><td>8</td><td class=up>$+136.53 (+5.00%)</td><td><span style="color:#3fb950;font-weight:700">波动率止盈</span></td></tr><tr><td class="l">2026-08-31 15:05</td><td class="tk">SNDK</td><td>$1,498.99</td><td>$1,469.01</td><td>$1,464.89</td><td>1</td><td class=down>$-38.10 (-2.27%)</td><td><span style="color:#a371f7;font-weight:700">跳空低开保护(-4%)</span></td></tr><tr><td class="l">2026-08-31 09:32</td><td class="tk">SHOP</td><td>$153.78</td><td>$150.70</td><td>$149.54</td><td>6</td><td class=down>$-29.44 (-2.76%)</td><td><span style="color:#a371f7;font-weight:700">跳空低开保护(-4%)</span></td></tr><tr><td class="l">2026-08-28 12:16</td><td class="tk">COIN</td><td>$183.09</td><td>$179.43</td><td>$178.52</td><td>13</td><td class=down>$-63.41 (-2.50%)</td><td><span style="color:#a371f7;font-weight:700">跳空低开保护(-4%)</span></td></tr><tr><td class="l">2026-08-27 15:55</td><td class="tk">TSLA</td><td>$351.02</td><td>$336.98</td><td>$354.79</td><td>9</td><td class=up>$+29.86 (+1.07%)</td><td><span style="color:#6e7681;font-weight:700">收盘清仓(旧规则)</span></td></tr>
       </table>
+      </div>
     </div>
   </div>
 
   <div class="grid" style="margin-top:12px">
     <div class="panel full">
       <h2>止损表 + 日均波动率 + 止盈 (止损: 60日窗口盘中回撤 P90 · 每日 05:30 管道重算 · 更新于 09-05 15:33 (美东); 波动: 日收益标准差未年化, 黄=高波动≥4%/天; 止盈: 方案A 波动率止盈 2×, 目标涨幅=2×日均波动率, 盘中触达→立即卖出 (2026-09-01 微调, 原次日开盘卖))</h2>
+      <div class="tbl">
       <table>
         <tr><th>标的</th><th>止损线 (高点回撤%)</th><th>建仓价-4% 下限</th><th>当前持仓</th><th>日均波动 (近5日)</th><th>日均波动 (近21日)</th><th>止盈目标涨幅 (2×波动)</th></tr>
         <tr><td class="tk">AAPL</td><td style="color:inherit;font-weight:700">3.5%</td><td class="muted">建仓价 × 0.96</td><td>—</td><td>1.9%</td><td>1.3%</td><td><span style="color:#3fb950;font-weight:700">+2.6%</span></td></tr><tr><td class="tk">ACHR</td><td style="color:#f0b429;font-weight:700">10.0%</td><td class="muted">建仓价 × 0.96</td><td>—</td><td>2.3%</td><td><span style="color:#f0b429">5.3%</span></td><td><span style="color:#3fb950;font-weight:700">+10.6%</span></td></tr><tr><td class="tk">COIN</td><td style="color:inherit;font-weight:700">7.5%</td><td class="muted">建仓价 × 0.96</td><td>—</td><td><span style="color:#f0b429">6.7%</span></td><td><span style="color:#f0b429">5.2%</span></td><td><span style="color:#3fb950;font-weight:700">+10.5%</span></td></tr><tr><td class="tk">CRSP</td><td style="color:inherit;font-weight:700">7.0%</td><td class="muted">建仓价 × 0.96</td><td>持仓中</td><td>0.6%</td><td>3.7%</td><td><span style="color:#3fb950;font-weight:700">+7.5%</span><br><span class="muted">目标 $60.45</span></td></tr><tr><td class="tk">DIA</td><td style="color:#f85149;font-weight:700">1.0%</td><td class="muted">建仓价 × 0.96</td><td>—</td><td>0.9%</td><td>0.6%</td><td><span style="color:#3fb950;font-weight:700">+1.1%</span></td></tr><tr><td class="tk">HOOD</td><td style="color:inherit;font-weight:700">8.5%</td><td class="muted">建仓价 × 0.96</td><td>—</td><td><span style="color:#f0b429">7.6%</span></td><td><span style="color:#f0b429">5.7%</span></td><td><span style="color:#3fb950;font-weight:700">+11.3%</span></td></tr><tr><td class="tk">MRNA</td><td style="color:inherit;font-weight:700">6.0%</td><td class="muted">建仓价 × 0.96</td><td>—</td><td><span style="color:#f0b429">5.2%</span></td><td><span style="color:#f0b429">45.2%</span></td><td><span style="color:#3fb950;font-weight:700">+90.5%</span></td></tr><tr><td class="tk">MSFT</td><td style="color:inherit;font-weight:700">4.0%</td><td class="muted">建仓价 × 0.96</td><td>持仓中</td><td>1.8%</td><td>1.5%</td><td><span style="color:#3fb950;font-weight:700">+2.9%</span><br><span class="muted">目标 $518.73</span></td></tr><tr><td class="tk">MU</td><td style="color:#f0b429;font-weight:700">10.0%</td><td class="muted">建仓价 × 0.96</td><td>—</td><td>3.2%</td><td>3.3%</td><td><span style="color:#3fb950;font-weight:700">+6.7%</span></td></tr><tr><td class="tk">PLTR</td><td style="color:inherit;font-weight:700">7.0%</td><td class="muted">建仓价 × 0.96</td><td>—</td><td><span style="color:#f0b429">5.4%</span></td><td>4.0%</td><td><span style="color:#3fb950;font-weight:700">+8.0%</span></td></tr><tr><td class="tk">QQQ</td><td style="color:inherit;font-weight:700">2.5%</td><td class="muted">建仓价 × 0.96</td><td>—</td><td>0.9%</td><td>0.8%</td><td><span style="color:#3fb950;font-weight:700">+1.7%</span></td></tr><tr><td class="tk">ROKU</td><td style="color:#f85149;font-weight:700">2.0%</td><td class="muted">建仓价 × 0.96</td><td>持仓中</td><td>1.2%</td><td>1.1%</td><td><span style="color:#3fb950;font-weight:700">+2.2%</span><br><span class="muted">目标 $160.69</span></td></tr><tr><td class="tk">SHOP</td><td style="color:inherit;font-weight:700">5.5%</td><td class="muted">建仓价 × 0.96</td><td>—</td><td>3.3%</td><td>2.7%</td><td><span style="color:#3fb950;font-weight:700">+5.3%</span></td></tr><tr><td class="tk">SKHY</td><td style="color:#f0b429;font-weight:700">10.0%</td><td class="muted">建仓价 × 0.96</td><td>—</td><td><span style="color:#f0b429">4.0%</span></td><td><span style="color:#f0b429">4.4%</span></td><td><span style="color:#3fb950;font-weight:700">+8.8%</span></td></tr><tr><td class="tk">SNDK</td><td style="color:#f0b429;font-weight:700">10.0%</td><td class="muted">建仓价 × 0.96</td><td>—</td><td><span style="color:#f0b429">5.5%</span></td><td><span style="color:#f0b429">5.6%</span></td><td><span style="color:#3fb950;font-weight:700">+11.3%</span></td></tr><tr><td class="tk">SPCX</td><td style="color:#f0b429;font-weight:700">10.0%</td><td class="muted">建仓价 × 0.96</td><td>—</td><td>3.3%</td><td><span style="color:#f0b429">4.8%</span></td><td><span style="color:#3fb950;font-weight:700">+9.6%</span></td></tr><tr><td class="tk">SPY</td><td style="color:#f85149;font-weight:700">1.5%</td><td class="muted">建仓价 × 0.96</td><td>—</td><td>0.7%</td><td>0.5%</td><td><span style="color:#3fb950;font-weight:700">+1.0%</span></td></tr><tr><td class="tk">TSLA</td><td style="color:inherit;font-weight:700">5.0%</td><td class="muted">建仓价 × 0.96</td><td>持仓中</td><td><span style="color:#f0b429">5.1%</span></td><td>3.2%</td><td><span style="color:#3fb950;font-weight:700">+6.3%</span><br><span class="muted">目标 $375.83</span></td></tr>
       </table>
+      </div>
       <div class="muted" style="margin-top:6px">止损线 = max(持仓期最高价 × (1 − 表值%), 建仓价 × 0.96); 现价 ≤ 止损线 → 自动清仓 (daemon 每 30 秒监控)。止盈 (2026-08-31 方案A): 目标价 = 建仓价 × (1 + 2×日均波动率), 盘中触及目标价 → 立即卖出 (2026-09-01 微调, 触发即出手, 不等次日); 与移动止损并行, 谁先触发谁执行。日均波动率 = 日收益率标准差, 如 4.4%/天 = 该股平均每天涨跌约 ±4.4%</div>
     </div>
   </div>
